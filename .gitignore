@@ -1,0 +1,4 @@
+*.xml
+*.h5
+tallies.out
+__pycache__/
