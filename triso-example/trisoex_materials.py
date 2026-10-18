@@ -26,12 +26,12 @@ def build_triso_materials():
     ipyc = openmc.Material(name='ipyc')
     ipyc.set_density('g/cm3', 1.9)
     ipyc.add_element('C', 1.0)
-    ipyc.add_s_alpha('c_Grpahite')
+    ipyc.add_s_alpha_beta('c_Graphite')
 
     opyc = openmc.Material(name='opyc')
     opyc.set_density('g/cm3', 1.87)
     opyc.add_element('C', 1.0)
-    opyc.add_s_alpha('c_Grpahite')
+    opyc.add_s_alpha_beta('c_Graphite')
 
     ## Silicon carbide (SiC), the main Pressure and FP product barrier
     # no S(a,b) here, thats only for moderator-like materials
@@ -44,7 +44,7 @@ def build_triso_materials():
     matrix = openmc.Material(name='matrix')
     matrix.set_density('g/cm3', 1.1995)
     matrix.add_element('C', 1.0)
-    matrix.add_s_alpha_beta('c_graphite')
+    matrix.add_s_alpha_beta('c_Graphite')
 
     return {
         'triso_fuel': fuel,
