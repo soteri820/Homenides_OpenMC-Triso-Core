@@ -1,9 +1,8 @@
 import openmc
 
 
-def build_settings(lower_left, upper_right, particles=1000, batches=100,
-                   inactive=10, seed=1):
-    """Return run settings for a k-eigenvalue calculation over a box-shaped region."""
+def build_settings(lower_left, upper_right, particles=1000, batches=100, inactive=10, seed=1):
+    ## Return run settings for a k-eigenvalue calculation over a box-shaped region.
 
     ## starting neutron source
     # sample points uniformly in the box, but only keep ones that land in fuel
@@ -38,8 +37,3 @@ def build_settings(lower_left, upper_right, particles=1000, batches=100,
     settings.entropy_mesh = entropy_mesh
 
     return settings
-
-
-# runs only with `python3 triso_settings.py`, not when another file imports this one
-if __name__ == "__main__":
-    print(build_settings((-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)))

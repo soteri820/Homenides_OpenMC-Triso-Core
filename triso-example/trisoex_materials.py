@@ -10,7 +10,7 @@ def build_triso_materials():
     # U235/(U235+U238) = 14% enriched, O and C making up the rest of the composition
     fuel = openmc.Material(name='trisofuel')
     fuel.set_density('g/cm3', 10.5)
-    fuel.add_nuclide('U235', 10.5)
+    fuel.add_nuclide('U235', 4.6716e-02)
     fuel.add_nuclide('U238', 2.8697e-01)
     fuel.add_nuclide('O16', 5.0e-01)
     fuel.add_element('C', 1.6667e-01)

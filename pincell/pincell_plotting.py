@@ -25,5 +25,4 @@ def build_plots(mats, pitch):
 # runs only with `python3 plotting.py`, not when another file imports this one
 if __name__ == "__main__":
     from materials import build_materials
-
     print(build_plots(build_materials(), 1.26))

@@ -1,10 +1,10 @@
 import openmc
 
-from materials import build_materials
-from geometry import build_geometry
-from settings import build_settings
-from tallies import build_tallies
-from plotting import build_plots
+from pincell_materials import build_materials
+from pincell_geometry import build_geometry
+from pincell_settings import build_settings
+from pincell_tallies import build_tallies
+from pincell_plotting import build_plots
 
 # unit cell width in cm; one value drive both geometry and the plots
 PITCH = 1.26

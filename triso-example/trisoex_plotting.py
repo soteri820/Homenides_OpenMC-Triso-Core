@@ -35,10 +35,3 @@ def build_plots(mats, side_cm=1.0):
     zoom = _material_plot('triso_zoom', mats, width_cm=0.2, pixels=1000)
 
     return openmc.Plots([overview, zoom])
-
-
-# runs only with `python3 triso_plotting.py`, not when another file imports this one
-if __name__ == "__main__":
-    from triso_materials import build_triso_materials
-
-    print(build_plots(build_triso_materials()))

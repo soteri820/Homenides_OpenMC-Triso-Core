@@ -30,10 +30,3 @@ def build_tallies(kernel_cell):
     return openmc.Tallies([rates, spectrum])
 
 
-# runs only with `python3 triso_tallies.py`, not when another file imports this one
-if __name__ == "__main__":
-    from triso_materials import build_triso_materials
-    from triso_geometry import build_geometry
-
-    _, kernel = build_geometry(build_triso_materials())
-    print(build_tallies(kernel))

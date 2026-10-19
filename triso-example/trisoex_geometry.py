@@ -81,7 +81,7 @@ def build_compact_cell(trisos, region, matrix, shape=(3,3,3)):
     return compact
 
 def build_geometry(mats, side_cm=1.0, packing_fraction=0.3):
-    """Standalone test geometry: one TRISO-filled cube. Returns (geometry, kernel_cell)."""
+    ## Standalone test geometry: one TRISO-filled cube. Returns (geometry, kernel_cell).
 
     triso_univ = build_triso_universe(mats)
     region = build_box_region(side_cm)
