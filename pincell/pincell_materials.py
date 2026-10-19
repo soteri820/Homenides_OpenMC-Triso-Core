@@ -40,5 +40,5 @@ def build_materials():
 #    for m in mats.values():
 #        print(m)
 
-### ODDLY ENOUGH, OPENMC DOESNT HOLD VALUES OF MATERIAL DENSITY, OR OTHER ENGINEERING INPUTS (GEOMETRY OR COMPOSITION)
-### ONLY CONTAINS REACTOR PHYSICS RELATED STUFF LIKE PHOTON DATA, NEUTRON DATA, THERMAL SCATTERING
+### oddly enough, openmc doesnt hold values of material density, or other engineering inputs (geometry or composition)
+### only contains reactor physics related stuff like photon data, neutron data, thermal scattering

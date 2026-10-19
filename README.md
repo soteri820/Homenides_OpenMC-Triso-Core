@@ -65,26 +65,53 @@ Install OpenMC (see the [OpenMC install guide](https://docs.openmc.org/en/stable
 
 ## Usage
 
-Run each project from its own folder:
+Run each project from its own folder.
+
+**UO2 pincell**
 
 ```
-cd <project_folder>
-python <main_script>.py
+cd pincell
+python pincell_main.py
 ```
 
-<!-- Fill in the actual folder and script names for each project. -->
+Writes the OpenMC input files, runs the eigenvalue calculation, prints k-effective, and writes `pinplot.png`.
+
+**TRISO compact**
+
+```
+cd triso-example
+python trisoex_main.py
+```
+
+Optional flags: `--seeds N` (run N transport seeds and report the spread in k), `--particles`, `--batches`, `--inactive`. Each seed runs in its own `run_seed_<N>/` folder, and the plots are written for seed 1.
+
+## Results
+
+Fill these in after running each model.
+
+| Model | k-effective | Settings | Notes |
+|---|---|---|---|
+| UO2 pincell | _TBD_ ± _TBD_ | 100 batches, 10 inactive, 1000 particles | |
+| TRISO compact | _TBD_ ± _TBD_ | 100 batches, 10 inactive, 1000 particles | |
+
+Multi-seed TRISO run (`python trisoex_main.py --seeds 3`): mean k = _TBD_, spread (std) = _TBD_
+
+Cross section library and OpenMC version used: _TBD_
+
+![UO2 pincell geometry](pincell/pinplot.png)
+![TRISO compact overview](triso-example/run_seed_1/triso_overview.png)
+![TRISO particle layers](triso-example/run_seed_1/triso_zoom.png)
 
 ## Repo Structure
 
 ```
 .
 ├── pincell/                    # UO2 pincell project
-├── triso/                      # TRISO project
+├── triso-example/              # TRISO compact project
 ├── kaleidos-mockup_claude/     # Claude-generated Kaleidos core image (modeling is a future step)
+│   └── kaleidos_mockup.png
 └── README.md
 ```
-
-<!-- Update folder and file names to match the repo. -->
 
 ## Acknowledgments
 

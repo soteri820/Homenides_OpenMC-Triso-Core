@@ -1,4 +1,3 @@
-import numpy as np
 import openmc
 import openmc.model
 
@@ -29,8 +28,9 @@ def build_triso_universe(mats):
 
     return openmc.Universe(name='triso_particle', cells=[kernel, buffer, ipyc, sic, opyc])
 
-## has a seemingly odd quirk where the outermost layer extends to the bound of this universe, without a hard definition of that shell
-## but thats okay because like main will make use of that variable or something like yeah
+## note: the outer PyC cell has no outer surface of its own. It simply extends to
+## the edge of the universe, and pack_triso_particles() sets that edge at the
+## full particle radius when it wraps this universe in a sphere.
 
 def build_box_region(side_cm=1.0, boundary_type='reflective'):
     ## Returns a cube region centered at origin, to pack particles into
@@ -93,19 +93,3 @@ def build_geometry(mats, side_cm=1.0, packing_fraction=0.3):
     # tallies need the kernel cell, which lives inside the particle universe
     kernel = next(c for c in triso_univ.cells.values() if c.name == 'kernel')
     return geometry, kernel
-
-# runs only with `python3 triso_geometry.py`, not when another file imports this one
-if __name__ == "__main__":
-    from triso_materials import build_triso_materials
-
-    mats = build_triso_materials()
-    univ = build_triso_universe(mats)
-    region = build_box_region(1.0)
-    trisos = pack_triso_particles(univ, region)
-
-    outer_radius = PARTICLE_RADIUS_UM * UM_TO_CM
-    centers = np.vstack([t.center for t in trisos])
-    print("particles:", len(trisos))
-    print("packing fraction:", len(trisos) * 4 / 3 * np.pi * outer_radius**3 / 1.0)
-    print("center min:", centers.min(axis=0))
-    print("center max:", centers.max(axis=0))

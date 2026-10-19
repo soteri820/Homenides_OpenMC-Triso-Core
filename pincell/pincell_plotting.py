@@ -1,6 +1,5 @@
 import openmc
 
-###THIS PARTICULAR FILE IS RIPPED RIGHT FROM CLAUDE, NOT MUCH UNIQUE TO THE OPENMC LIBRARY HERE
 
 def build_plots(mats, pitch):
     """Return a Plots collection with one material-colored slice of the pin cell."""
@@ -20,9 +19,3 @@ def build_plots(mats, pitch):
     }
 
     return openmc.Plots([plot])
-
-
-# runs only with `python3 plotting.py`, not when another file imports this one
-if __name__ == "__main__":
-    from materials import build_materials
-    print(build_plots(build_materials(), 1.26))
