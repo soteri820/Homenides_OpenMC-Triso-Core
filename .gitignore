@@ -1,4 +1,6 @@
 *.xml
 *.h5
+run_seed_*/
+stepoint.*
 tallies.out
 __pycache__/
