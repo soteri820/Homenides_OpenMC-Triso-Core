@@ -25,7 +25,7 @@ Based on the pincell example in the OpenMC documentation.
 
 ### 2. TRISO Fuel Model
 
-A TRISO fuel model representing an infinite TRISO compact, the cylindrical-style fuel form used in high temperature gas-cooled reactors. Each particle has the usual layered structure (fuel kernel, buffer, pyrolytic carbon, silicon carbide, outer pyrolytic carbon) and the particles are packed in a graphite matrix. Reflective boundaries make the compact effectively infinite.
+A k-infinity calculation of a TRISO-in-graphite medium, the kind of fuel used in high temperature gas-cooled reactors. The geometry is a 1 cm cube with reflective faces, so it represents an infinite medium and not a finite compact. Each particle has the usual layered structure (fuel kernel, buffer, pyrolytic carbon, silicon carbide, outer pyrolytic carbon). The fuel is 14% enriched, and the particles fill 30% of the volume, randomly packed in a graphite matrix.
 
 Based on the TRISO example in the OpenMC documentation.
 
@@ -65,26 +65,53 @@ Install OpenMC (see the [OpenMC install guide](https://docs.openmc.org/en/stable
 
 ## Usage
 
-Run each project from its own folder:
+Run each project from its own folder.
+
+**UO2 pincell**
 
 ```
-cd <project_folder>
-python <main_script>.py
+cd pincell
+python pincell_main.py
 ```
 
-<!-- Fill in the actual folder and script names for each project. -->
+Writes the OpenMC input files, runs the eigenvalue calculation, prints k-effective, and writes `pinplot.png`.
+
+**TRISO compact**
+
+```
+cd triso-example
+python trisoex_main.py
+```
+
+Optional flags: `--seeds N` (run N transport seeds and report the spread in k), `--particles`, `--batches`, `--inactive`. Each seed runs in its own `run_seed_<N>/` folder, and the plots are written for seed 1.
+
+## Results
+
+Fill these in after running each model.
+
+| Model | k-effective | Settings | Notes |
+|---|---|---|---|
+| UO2 pincell | 1.4023 ± 0.0030 | 100 batches, 10 inactive, 1000 particles | Combined estimator; collision 1.4013, track-length 1.4009, absorption 1.4026 |
+| TRISO compact | 1.0655 ± 0.0031 | 100 batches, 10 inactive, 1000 particles | Single seed (combined estimator); Shannon entropy flat at ~5.93 |
+
+Multi-seed TRISO run (`python trisoex_main.py --seeds 3`): seeds 1 to 3 gave k = 1.0655, 1.0672 and 1.0657. Mean k = 1.0661, spread (std) = 0.0010, which is consistent with the statistical error of each run (about 0.003).
+
+Cross section library and OpenMC version used: NNDC HDF5 (294 K), OpenMC 0.15.3
+
+![UO2 pincell geometry](pincell/pinplot.png)
+![TRISO compact overview](triso-example/run_seed_1/triso_overview.png)
+![TRISO particle layers](triso-example/run_seed_1/triso_zoom.png)
 
 ## Repo Structure
 
 ```
 .
 ├── pincell/                    # UO2 pincell project
-├── triso/                      # TRISO project
+├── triso-example/              # TRISO compact project
 ├── kaleidos-mockup_claude/     # Claude-generated Kaleidos core image (modeling is a future step)
+│   └── kaleidos_mockup.png
 └── README.md
 ```
-
-<!-- Update folder and file names to match the repo. -->
 
 ## Acknowledgments
 
