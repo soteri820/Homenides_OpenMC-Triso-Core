@@ -5,7 +5,7 @@ Two small OpenMC models I built to learn how the library works, plus a mockup of
 ## About This Repo
 
 - **Source material.** Both projects come from the OpenMC documentation examples. The physics setups are theirs. What I changed is the structure.
-- **Claude's role.** Claude refactored the provided example code into separate, less overwhelming files and added explicit commentary explaining what each piece does. That commentary is how I learned how the library works.
+- **Claude's role.** Claude refactored the provided example code into separate, less overwhelming files and explained what each piece does. I then wrote many of the code comments myself, in my own words and to my own understanding, when I felt they were needed. Due to the simplicity of the some files, they were copied without editing Claude's comments (particularly the plotting files). Working through those explanations is how I learned how the library works.
 - **Timeline.** All of this was done on Sunday, October 18 and Monday morning, October 19, 2026.
 - **My level of understanding.** I have a strong but not complete understanding of everything in here. I am currently taking reactor physics and have not completed it yet, so some of the physics and some modeling choices are things I am still learning. If something looks off, it may well be. I have a near complete understanding of how the code itself works and am familiar with Python Syntax
 
@@ -36,7 +36,20 @@ A Claude-generated image of the Kaleidos core. This is not a working model yet. 
 **Planned next steps:** model the core in OpenMC using what I learned from the two completed examples above. The plan is:
 
 - Use a quartered geometry with reflective boundary conditions on the cut walls, so only a quarter of the core needs to be simulated.
-- Model how reactivity changes as the boron absorber arcs on the control drums are rotated.
+- Model how reactivity changes as the boron absorber arcs on the control drums are rotated, running a sweep of drum angles and tracking k-effective at each one.
+- Explore a dynamic drum rotation: adjusting the drum angle automatically to hold the core at a steady criticality of k-effective = 1, rather than only running fixed angles.
+- Define each material with the properties OpenMC needs, as they become necessary: density, elemental (or nuclide) composition, and scattering properties.
+- Account for temperature effects where they matter, such as temperature-dependent cross sections.
+- Choose the axial geometry and its boundary conditions deliberately, since the mockup only shows the axial midplane and neutron leakage out of the top and bottom of the core will matter.
+
+**What I still need to learn before the model is realistic.** The mockup uses illustrative dimensions, and a simulation that could reasonably be expected to reach criticality needs more than a good-looking geometry. I do not yet fully understand:
+
+- **Geometric positioning of components.** Where the fuel, coolant channels, control drums, reflector, and shield sit relative to each other, and their real dimensions.
+- **Neutron sourcing.** Where and how to place the initial source neutrons so the fission source converges to a sensible distribution.
+- **Generations to discard.** How many inactive batches the criticality calculation needs before the results are trustworthy, which I plan to check with Shannon entropy and multiple random seeds as I did for the TRISO model.
+- **Pressure vessel materials.** What the vessel is made of and how much it matters to the neutron balance.
+
+**Quantities of interest.** Beyond k-effective, I want to tally the neutrons that escape through the gaps between the boron arcs on the control drums, and to look at the flux and power distribution across the core. Comparing these across drum angles should show how effective the boron arcs are at absorbing neutrons.
 
 ## Requirements
 
