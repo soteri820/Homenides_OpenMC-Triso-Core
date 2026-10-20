@@ -37,6 +37,7 @@ A Claude-generated image of the Kaleidos core. This is not a working model yet. 
 
 - Use a quartered geometry with reflective boundary conditions on the cut walls, so only a quarter of the core needs to be simulated.
 - Model how reactivity changes as the boron absorber arcs on the control drums are rotated, running a sweep of drum angles and tracking k-effective at each one.
+- Explore a dynamic drum rotation: adjusting the drum angle automatically to hold the core at a steady criticality of k-effective = 1, rather than only running fixed angles.
 - Define each material with the properties OpenMC needs, as they become necessary: density, elemental (or nuclide) composition, and scattering properties.
 - Account for temperature effects where they matter, such as temperature-dependent cross sections.
 - Choose the axial geometry and its boundary conditions deliberately, since the mockup only shows the axial midplane and neutron leakage out of the top and bottom of the core will matter.
