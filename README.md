@@ -5,7 +5,7 @@ Two small OpenMC models I built to learn how the library works, plus a mockup of
 ## About This Repo
 
 - **Source material.** Both projects come from the OpenMC documentation examples. The physics setups are theirs. What I changed is the structure.
-- **Claude's role.** Claude refactored the provided example code into separate, less overwhelming files and explained what each piece does. I then wrote the code comments myself, in my own words and to my own understanding, when I felt they were needed. Working through those explanations is how I learned how the library works.
+- **Claude's role.** Claude refactored the provided example code into separate, less overwhelming files and explained what each piece does. I then wrote many of the code comments myself, in my own words and to my own understanding, when I felt they were needed. Due to the simplicity of the some files, they were copied without editing Claude's comments (particularly the plotting files). Working through those explanations is how I learned how the library works.
 - **Timeline.** All of this was done on Sunday, October 18 and Monday morning, October 19, 2026.
 - **My level of understanding.** I have a strong but not complete understanding of everything in here. I am currently taking reactor physics and have not completed it yet, so some of the physics and some modeling choices are things I am still learning. If something looks off, it may well be. I have a near complete understanding of how the code itself works and am familiar with Python Syntax
 
